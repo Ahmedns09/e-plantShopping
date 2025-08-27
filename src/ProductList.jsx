@@ -272,6 +272,12 @@ function ProductList({ onHomeClick }) {
         console.log("Added item!");
     }
 
+    const resetButton = (itemName)=>{
+        setAddedToCart((prevState)=>(
+            {...prevState, [itemName]:false,}
+        ));
+    }
+
     const totalItems = ()=>{
         let total = 0;
         cart.forEach((item)=>{
@@ -344,7 +350,8 @@ function ProductList({ onHomeClick }) {
                                         <div className='product-description'> {plant.description} </div>
                                         <div className='product-cost'> ${plant.cost} </div>
                                         <button
-                                            className='product-button'
+                                            className= {addedToCart[plant.name] === true ?  "product-button added-to-cart" : "product-button"}
+                                            disabled = {addedToCart[plant.name]=== true}
                                             onClick={() => handleAddToCart(plant)}
                                         >
                                             Add to Cart
@@ -358,7 +365,7 @@ function ProductList({ onHomeClick }) {
 
                 </div>
             ) : (
-                <CartItem onContinueShopping={handleContinueShopping} />
+                <CartItem onContinueShopping={handleContinueShopping} onRemoval={resetButton}/>
             )}
         </div>
     );
