@@ -11,7 +11,7 @@ function ProductList({ onHomeClick }) {
 
     const [addedToCart, setAddedToCart] = useState({});
 
-    const dispatch = useDispatch;
+    const dispatch = useDispatch();
 
     const plantsArray = [
         {
@@ -267,7 +267,8 @@ function ProductList({ onHomeClick }) {
 
         setAddedToCart((prevState) => (
             {...prevState, [product.name]: true, }
-        ))
+        ));
+        console.log("Added item!");
     }
 
     return (
