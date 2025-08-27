@@ -348,7 +348,7 @@ function ProductList({ onHomeClick }) {
                                         <img src={plant.image} alt={plant.name} className='product-image' />
                                         <div className='product-title'> {plant.name} </div>
                                         <div className='product-description'> {plant.description} </div>
-                                        <div className='product-cost'> ${plant.cost} </div>
+                                        <div className='product-cost'> {plant.cost} </div>
                                         <button
                                             className= {addedToCart[plant.name] === true ?  "product-button added-to-cart" : "product-button"}
                                             disabled = {addedToCart[plant.name]=== true}
