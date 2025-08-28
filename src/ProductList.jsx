@@ -272,18 +272,26 @@ function ProductList({ onHomeClick }) {
         console.log("Added item!");
     }
 
-    const resetButton = (itemName)=>{
-        setAddedToCart((prevState)=>(
-            {...prevState, [itemName]:false,}
+    const resetButton = (itemName) => {
+        setAddedToCart((prevState) => (
+            { ...prevState, [itemName]: false, }
         ));
     }
 
-    const totalItems = ()=>{
+    const totalItems = () => {
+        //method 1
         let total = 0;
-        cart.forEach((item)=>{
+        cart.forEach((item) => {
             total += item.quantity;
         });
         return total;
+
+        //method 2
+        // total = cart.reduce((acc, obj) => acc + obj.quantity, 0);
+        // return total;
+
+        //method 3 (no need of total var)
+        // return cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
     }
 
     return (
@@ -350,8 +358,8 @@ function ProductList({ onHomeClick }) {
                                         <div className='product-description'> {plant.description} </div>
                                         <div className='product-cost'> {plant.cost} </div>
                                         <button
-                                            className= {addedToCart[plant.name] === true ?  "product-button added-to-cart" : "product-button"}
-                                            disabled = {addedToCart[plant.name]=== true}
+                                            className={addedToCart[plant.name] === true ? "product-button added-to-cart" : "product-button"}
+                                            disabled={addedToCart[plant.name] === true}
                                             onClick={() => handleAddToCart(plant)}
                                         >
                                             Add to Cart
@@ -365,7 +373,7 @@ function ProductList({ onHomeClick }) {
 
                 </div>
             ) : (
-                <CartItem onContinueShopping={handleContinueShopping} onRemoval={resetButton}/>
+                <CartItem onContinueShopping={handleContinueShopping} onRemoval={resetButton} />
             )}
         </div>
     );
